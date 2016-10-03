@@ -461,8 +461,6 @@ public final class PowerManagerService extends SystemService
     // timeout for button backlight automatic turning off
     private int mButtonTimeout;
 
-    private boolean isPhoneAvailable = false;
-
     private native void nativeInit();
 
     private static native void nativeAcquireSuspendBlocker(String name);
@@ -1716,6 +1714,7 @@ public final class PowerManagerService extends SystemService
      * Determines whether phone is enabled and a phone call is active.
      */
     private boolean isPhoneCallActive() {
+        boolean isPhoneAvailable = false;
         if (mBootCompleted && telephonyManager != null) {
             isPhoneAvailable =
                     telephonyManager.getPhoneType() != TelephonyManager.PHONE_TYPE_NONE;
